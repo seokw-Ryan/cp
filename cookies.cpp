@@ -16,8 +16,8 @@ int main() {
 	}
 	
 	int ans;
-	if (count == 1) {
-		ans = 1;
+	if (count%2 == 1) {
+		ans = count;
 	} else {
 		ans = n - count;
 	}
