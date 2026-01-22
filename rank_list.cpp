@@ -13,21 +13,22 @@ int main() {
         cin >> prob >> pen;
         p[i] = {prob, pen};
     }
+    // need to sort so that the first element is big to small 
+    // and the second element is small to big
+    sort(p.begin(), p.end(), [](auto &a, auto &b) {
+	    return make_pair(-a.first, a.second) < make_pair(-b.first,
+	    b.second);
+	    });
     
-    sort(p.begin(), p.end());
-
-    int counter_pos = 0;
-    int num_team = 0;
-    int pos = 1;
-    pair<int, int> prev = p[0];
-    cout << "prev" << prev.first << " " << prev.second << "\n";
-    while (pos < n) {
-       cout << p[pos].first << " " << p[pos].second << " ";
-       if (p[pos] != p[pos-1]) counter_pos++;
-       if (k == counter_pos) num_team++;
-       pos++;
+    // and then we select the k-1 position
+    // find the values (first and second) then loop through to find how many
+    // elements there are with the same values
+    pair<int, int> val = p[k-1];
+    int count = 0;
+    for (int i=0; i<n; i++) {
+	    if (p[i] == val) count++;
     }
-    cout << num_team << "\n";
+    cout << count << "\n";
 
     return 0;
 
