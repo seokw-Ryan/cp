@@ -6,34 +6,40 @@ int main() {
 
 	int n;
 	cin >> n;
-	vector<int> v;
-	vector<int> dp(n, 0);
-	for (int i=0; i< ; i++) {
-		int x; cin >> x;
-		v.push_back(x);
-	}
 	
-	// think about what needs to be stored
-	// index vs. value
-	// i dont think we are removing any elements here because that will take
-	// too long
-	// the value should be max number of points
-	// dp[i] = max(dp[i], 
-	// but what should "i" be?
-	// the question is how should this second for loop be navigatedf
-	// i guess we only look ak-1 part because in the end we wont need to
-	// look at ak+1
-	// which means that we go through each and every element
+	int big_num = 100000;
+	int mx = 0;
+	vector<int> count(big_num, 0);
 	for (int i=0; i<n; i++) {
-		// whats the best way to go and store the element?
-		// i and i-2
-		if (dp[i] = max(d
-
-		
-
-
-		return 0;
+		int temp; cin >> temp;
+		count[temp]++;
+		mx = max(temp, mx);
 	}
+
+	// each dp value = max value until dp[i]
+	// which means that dp[1] = count
+	// dual for loop?
+	// can only look at ak-1 by going from low to high 
+
+	
+	vector<int> dp(mx+1, 0);
+	// does dp[0] matter here?
+	dp[1] = count[1]; // 0 and 2 eliminted (0 dne) 
+	int ans = 0;
+	for (int i=2; i<mx+1; i++) {
+		// dp[2] have 1 and 3 eliminated
+		// dp[2] = dp[0] + count[2]*2
+		// dp[3] have 2 and 4 eliminated
+		// dp[3] = dp[1] + count[3]*3
+		// dont care about above 
+		//should include all the past values except i-1
+		// 
+		dp[i] = max(dp[i-1], dp[i-2] + count[i]*i);	
+		//cout << "dp[" << i << "]: " << dp[i] << "\n";
+
+	}
+	//missing an edge case
+	cout <<  dp[mx]; 
 
 
 	return 0;
