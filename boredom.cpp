@@ -7,9 +7,9 @@ int main() {
 	int n;
 	cin >> n;
 	
-	int big_num = 100000;
+	int big_num = 100001;
 	int mx = 0;
-	vector<int> count(big_num, 0);
+	vector<ll> count(big_num, 0);
 	for (int i=0; i<n; i++) {
 		int temp; cin >> temp;
 		count[temp]++;
@@ -22,7 +22,7 @@ int main() {
 	// can only look at ak-1 by going from low to high 
 
 	
-	vector<int> dp(mx+1, 0);
+	vector<ll> dp(mx+1, 0);
 	// does dp[0] matter here?
 	dp[1] = count[1]; // 0 and 2 eliminted (0 dne) 
 	int ans = 0;
@@ -34,7 +34,7 @@ int main() {
 		// dont care about above 
 		//should include all the past values except i-1
 		// 
-		dp[i] = max(dp[i-1], dp[i-2] + count[i]*i);	
+		dp[i] = max(dp[i-1], dp[i-2] + count[i]*i*1LL);	
 		//cout << "dp[" << i << "]: " << dp[i] << "\n";
 
 	}
